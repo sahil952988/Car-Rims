@@ -7,7 +7,7 @@ import { GoPerson } from "react-icons/go";
 import { IoSearchOutline } from "react-icons/io5";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { TiThMenu } from "react-icons/ti";
-import { IoMdClose } from "react-icons/io"; // Import Close Icon
+import { IoMdClose } from "react-icons/io";
 import { useState } from "react";
 
 
@@ -15,8 +15,8 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <div className="max-w-[1536px] mx-auto">
-        <div className="flex justify-between pl-[20px] bg-black opacity-85 text-white font-medium md:h-[110px] h-[80px]">
+      <div className="max-w-[1536px] mx-auto fixed w-full">
+        <div className="flex justify-between pl-[20px] bg-black/30 backdrop-blur-none ... text-white font-medium md:h-[110px] h-[80px] border-b-[0.1px] border-b-gray-800 z-[999999]">
 
           <div className="w-[100px] md:w-[170px]">
             <Image
@@ -72,7 +72,7 @@ const Header = () => {
             </div>
 
             <div onClick={() => setIsOpen(!isOpen)} className="menu md:hidden">
-              <div className="bg-[#eeca52] md:w-[100px] w-[50px] flex items-center justify-center md:h-[110px] h-full cursor-pointer">
+              <div className="bg-primary md:w-[100px] w-[50px] flex items-center justify-center md:h-[110px] h-full cursor-pointer">
                 <TiThMenu className="text-[22px] text-black" />
               </div>
             </div>
