@@ -11,6 +11,7 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: "#eeca52",
+        secondary: "#222222"
       },
       fontFamily: {
         roboto: ["Roboto", "sans-serif"],

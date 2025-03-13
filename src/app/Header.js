@@ -8,16 +8,31 @@ import { IoSearchOutline } from "react-icons/io5";
 import { HiDotsHorizontal } from "react-icons/hi";
 import { TiThMenu } from "react-icons/ti";
 import { IoMdClose } from "react-icons/io";
-import { useState } from "react";
-
+import { useState, useEffect } from "react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [bgColor, setBgColor] = useState("bg-black/30 backdrop-blur-none"); // Default background color with no blur
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        setBgColor("bg-black/40 backdrop-blur-sm");
+      } else {
+        setBgColor("bg-black/30 backdrop-blur-none"); // Reset to original color and no blur when at the top
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <>
-      <div className="max-w-[1536px] mx-auto fixed w-full">
-        <div className="flex justify-between pl-[20px] bg-black/30 backdrop-blur-none ... text-white font-medium md:h-[110px] h-[80px] border-b-[0.1px] border-b-gray-800 z-[999999]">
-
+      <div className="max-w-[1536px] mx-auto fixed w-full z-[999999999]">
+        <div className={`flex justify-between pl-[20px] ${bgColor} text-white font-medium md:h-[110px] h-[80px] border-b-[0.1px] border-b-gray-800 z-[999999]`}>
           <div className="w-[100px] md:w-[170px]">
             <Image
               className="py-5"
@@ -29,7 +44,7 @@ const Header = () => {
             />
           </div>
 
-          <div className={`md:flex items-center  right-0 md:bg-transparent bg-black opacity-95 md:relative absolute h-full md:w-auto w-[50%] ${isOpen ? "block" : "hidden"}`}>
+          <div className={`md:flex items-center right-0 md:bg-transparent bg-black opacity-95 md:relative absolute h-full md:w-auto w-[50%] ${isOpen ? "block" : "hidden"}`}>
             <button
               onClick={() => setIsOpen(false)}
               className="absolute top-4 right-4 text-2xl md:hidden text-white transition-transform duration-300 hover:rotate-180"
@@ -54,7 +69,6 @@ const Header = () => {
               <HiDotsHorizontal className="hidden md:block xl:hidden mt-1 text-[20px] cursor-pointer" />
             </div>
           </div>
-
 
           <div className="flex items-center">
             <div className="hidden md:block">
